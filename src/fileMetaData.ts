@@ -6,7 +6,7 @@ dotenv.config();
 
 export default (fileLocation: string): boolean => {
     try {
-        const javaMetaDataLocation = path.resolve('.', <string>process.env.JAVAMETADATALOCATION)
+        const javaMetaDataLocation = path.resolve('.', <string>process.env.JAVAMETADATALOCATION);
         const fileLocationAbsolute = path.resolve('.', fileLocation);
 
         execa.sync('java', ['-jar', 'fileMetaData.jar', fileLocationAbsolute], {
@@ -15,9 +15,9 @@ export default (fileLocation: string): boolean => {
         });
 
         return true;
-    }  catch (err) {
+    } catch (err) {
         console.log(err.shortMessage);
         console.log('information getter crash😑');
         return false;
     }
-}
+};

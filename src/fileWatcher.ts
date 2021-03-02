@@ -23,8 +23,10 @@ export const startFileWatcher = (locationToWatch: string): chokidar.FSWatcher =>
     // If new file
     watcher.on('add', (newFileLocation) => {
         log(`File ${newFileLocation} has been added`);
-        //TODO: Implement newFileAdded()
+        newFileAdded(newFileLocation);
     });
+
+    return watcher;
 };
 
 export const newFileAdded = (newFileLocationAbsolute: string): void => {
@@ -37,19 +39,26 @@ export const newFileAdded = (newFileLocationAbsolute: string): void => {
     const fileNameWithExtensionInNestedDir = path.join(nestedDir, newFileNameWithExtension);
 
     // determine the file final location
-    const fileDir = path.join(<string>process.env.FILEFINALDES, newFileName);
+    const fileFinalDir = path.join(<string>process.env.FILEFINALDES, newFileName);
 
     try {
         const goodCreate = createDir(nestedDir);
 
         const goodMove = moveItem(newFileLocationAbsolute, fileNameWithExtensionInNestedDir);
 
-        // TODO: Get the metadata from fileMetaData.ts
+        const goodInformation = information(fileNameWithExtensionInNestedDir);
 
-        
+        if (goodCreate && goodMove && goodInformation) {
+            const goodFinalMove = moveItem(nestedDir, fileFinalDir);
+            if (goodFinalMove) {
+                console.log(`File ${newFileName} moved to ${fileFinalDir}`);
+            }
+        } else {
+            console.log(`File ${newFileName} is not moving`);
+        }
+    } catch (err) {
+        console.error(`${err}👧`);
     }
-
-    // TODO: move the new file to the newly created directory
 };
 
 const createDir = (dirLocation: string): boolean | never => {
