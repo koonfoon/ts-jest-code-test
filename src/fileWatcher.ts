@@ -3,7 +3,7 @@ import path from 'path';
 import chokidar from 'chokidar';
 import fse from 'fs-extra';
 import moveFile from 'move-file';
-import information from './getTheGirlInfor.js';
+import information from './fileMetaData.js';
 import globby from 'globby';
 import chalk from 'chalk';
 
