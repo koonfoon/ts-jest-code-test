@@ -30,17 +30,29 @@ export const startFileWatcher = (locationToWatch: string): chokidar.FSWatcher =>
 export const newFileAdded = (newFileLocationAbsolute: string): void => {
     // Get the file name
     const newFileName = path.basename(newFileLocationAbsolute).split('.')[0];
-    const bewFileNameWithExtension = path.basename(newFileLocationAbsolute);
+    const newFileNameWithExtension = path.basename(newFileLocationAbsolute);
+
+    // Determine the nested location/directory for the new file
+    const nestedDir = path.join(<string>process.env.WATCHINGDIR, newFileName);
+    const fileNameWithExtensionInNestedDir = path.join(nestedDir, newFileNameWithExtension);
 
     // determine the file final location
     const fileDir = path.join(<string>process.env.FILEFINALDES, newFileName);
 
-    // TODO: create the new directory for the new file with the file name
+    try {
+        const goodCreate = createDir(nestedDir);
+
+        const goodMove = moveItem(newFileLocationAbsolute, fileNameWithExtensionInNestedDir);
+
+        // TODO: Get the metadata from fileMetaData.ts
+
+        
+    }
 
     // TODO: move the new file to the newly created directory
 };
 
-const creaDir = (dirLocation: string): boolean | never => {
+const createDir = (dirLocation: string): boolean | never => {
     fse.mkdirSync(dirLocation);
     // Check if the directory is created
     if (fse.pathExistsSync(dirLocation)) {
