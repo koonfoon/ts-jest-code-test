@@ -1,5 +1,7 @@
-import fileMetaData from '../src/fileMetaData.ts';
 import mockFile from 'mock-fs';
+
+// Self made module
+import fileMetaData from '../src/fileMetaData';
 
 beforeAll(() => {
     mockFile.restore();
