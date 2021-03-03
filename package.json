@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc -p tsconfig.json --noEmitOnError",
     "test": "jest --detectOpenHandles --forceExit"
   },
   "type": "module",
