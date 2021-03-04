@@ -7,8 +7,8 @@ import { mocked } from 'ts-jest/utils';
 import dirTree from 'directory-tree';
 
 // Self made module
-import * as fileWatcher from '../src/fileWatcher';
-import fileMetaData from '../src/fileMetaData';
+import * as fileWatcher from '../src/fileWatcher.ts';
+import fileMetaData from '../src/fileMetaData.ts';
 import mock from 'mock-fs';
 
 dotenv.config();
