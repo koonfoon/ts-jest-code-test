@@ -4,7 +4,6 @@ export default {
     transform: {
         '^.+\\.(ts|tsx)$': 'ts-jest',
     },
-    extensionsToTreatAsEsm: ['.ts'],
     preset: 'ts-jest/presets/default-esm',
     testEnvironment: 'node',
     globals: {
