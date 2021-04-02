@@ -7,7 +7,7 @@ import globby from 'globby';
 import chalk from 'chalk';
 
 // Self made module
-import information from './fileMetaData.js';
+import information from './fileMetaData';
 
 dotenv.config();
 

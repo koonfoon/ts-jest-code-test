@@ -1,6 +1,7 @@
-//import dotenv from 'dotenv';
+import { jest } from '@jest/globals';
+import dotenv from 'dotenv';
 import chokidar from 'chokidar';
-//import mockFile from 'mock-fs';
+import mockFile from 'mock-fs';
 import fse from 'fs-extra';
 import path from 'path';
 import { mocked } from 'ts-jest/utils';
@@ -11,11 +12,11 @@ import * as fileWatcher from '../src/fileWatcher';
 import fileMetaData from '../src/fileMetaData';
 import mock from 'mock-fs';
 
-//dotenv.config();
+dotenv.config();
 
-// jest.mock('../src/fileMetaData', () => {
-//     return jest.fn();
-// });
+jest.mock('../src/fileMetaData', () => {
+    return jest.fn();
+});
 
 let watcher: chokidar.FSWatcher;
 
