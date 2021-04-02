@@ -22,23 +22,23 @@ let watcher: chokidar.FSWatcher;
 
 beforeAll(() => {
     watcher = fileWatcher.startFileWatcher(<string>process.env.WATCHINGDIR);
-    //mockFile.restore();
-    //mocked(fileMetaData).mockClear();
+    mockFile.restore();
+    mocked(fileMetaData).mockClear();
 });
-// beforeEach(() => {
-//     mockFile.restore();
-//     mocked(fileMetaData).mockClear();
-// });
-// afterEach(() => {
-//     mockFile.restore();
-//     mocked(fileMetaData).mockClear();
-// });
-// afterAll(() => {
-//     //watcher.close().then(() => console.log('watcher closed'));
-//     jest.resetAllMocks();
-//     mockFile.restore();
-//     mocked(fileMetaData).mockClear();
-// });
+beforeEach(() => {
+    mockFile.restore();
+    mocked(fileMetaData).mockClear();
+});
+afterEach(() => {
+    mockFile.restore();
+    mocked(fileMetaData).mockClear();
+});
+afterAll(() => {
+    //watcher.close().then(() => console.log('watcher closed'));
+    jest.resetAllMocks();
+    mockFile.restore();
+    mocked(fileMetaData).mockClear();
+});
 
 // Check if watcher is working fine
 test('testing if return value is instance of chokidar', () => {
@@ -46,22 +46,22 @@ test('testing if return value is instance of chokidar', () => {
 });
 
 // // Check if function newFileAdded() is being called
-// test('check if function newFileAdded() is called', () => {
-//     const spynewFileAdded = jest.spyOn(fileWatcher, 'newFileAdded');
-//     spynewFileAdded.mockImplementation(() => console.log('newFileAdded() is called'));
+test('check if function newFileAdded() is called', () => {
+    const spynewFileAdded = jest.spyOn(fileWatcher, 'newFileAdded');
+    spynewFileAdded.mockImplementation(() => console.log('newFileAdded() is called'));
 
-//     watcher.emit('add', path.join(<string>process.env.WATCHINGDIR, 'fileName.txt'));
+    watcher.emit('add', path.join(<string>process.env.WATCHINGDIR, 'fileName.txt'));
 
-//     expect(spynewFileAdded).toBeCalled();
+    expect(spynewFileAdded).toBeCalled();
 
-//     spynewFileAdded.mockRestore();
-// });
+    spynewFileAdded.mockRestore();
+});
 
-// test('Testing the mocked fileMetaData()', () => {
-//     mocked(fileMetaData).mockReturnValueOnce(true);
+test('Testing the mocked fileMetaData()', () => {
+    mocked(fileMetaData).mockReturnValueOnce(true);
 
-//     expect(mocked(fileMetaData('path'))).toBeTruthy();
-// });
+    expect(mocked(fileMetaData('path'))).toBeTruthy();
+});
 
 // test('check if FileAdded() function work correctly', () => {
 //     // Mock file system
